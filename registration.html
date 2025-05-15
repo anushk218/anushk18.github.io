@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Saavi Creations Registration Form">
+  <title>Saavi Creations - Registration</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    .container {
+      background: #ffffff;
+      padding: 20px 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+      text-align: left;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #2a475e;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #334e68;
+      margin-bottom: 6px;
+      margin-top: 12px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 1rem;
+      border: 1.8px solid #bcccdc;
+      border-radius: 6px;
+      transition: border-color 0.3s ease;
+      margin-bottom: 5px;
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus {
+      outline: none;
+      border-color: #3d8bfd;
+      box-shadow: 0 0 5px rgba(61, 139, 253, 0.6);
+    }
+    
+    button {
+      margin-top: 25px;
+      background-color: #3d8bfd;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    
+    button:hover {
+      background-color: #326adf;
+    }
+    
+    .note {
+      font-size: 0.8rem;
+      color: #829ab1;
+      margin-top: 6px;
+      display: block;
+    }
+    
+    @media (max-width: 400px) {
+      .container {
+        max-width: 95vw;
+        padding: 15px 20px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Saavi Creations Registration</h1>
+    <form id="registrationForm" action="https://formspree.io/f/xrbqrbnl" method="POST" novalidate>
+      <label for="name">Name *</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+      <label for="address">Address *</label>
+      <input type="text" id="address" name="address" placeholder="Street, house number, etc." required>
+
+      <label for="pinCode">Pin Code *</label>
+      <input type="text" id="pinCode" name="pinCode" placeholder="Pin code" pattern="\d{6}" maxlength="6" inputmode="numeric" required>
+      <span class="note">6 digit pin code</span>
+
+      <label for="city">City *</label>
+      <input type="text" id="city" name="city" placeholder="City" required>
+
+      <label for="state">State *</label>
+      <input type="text" id="state" name="state" placeholder="State" required>
+
+      <label for="nearPlace">Near Place *</label>
+      <input type="text" id="nearPlace" name="nearPlace" placeholder="Nearby landmark" required>
+
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" name="phone" placeholder="10 digit phone number" pattern="\d{10}" maxlength="10" inputmode="tel" required>
+      <span class="note">10 digit phone number</span>
+
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        alert('Please fill out all required fields correctly.');
+        form.reportValidity();
+        return;
+      }
+
+      // Gather form data
+      const formData = {
+        name: form.name.value.trim(),
+        address: form.address.value.trim(),
+        pinCode: form.pinCode.value.trim(),
+        city: form.city.value.trim(),
+        state: form.state.value.trim(),
+        nearPlace: form.nearPlace.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+      };
+
+      // Show success alert
+      alert('Registration submitted successfully!\nThank you, ' + formData.name);
+
+      // Submit form to Formspree
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+      // Reset form
+      form.reset();
+    });
+  </script>
+</body>
+</html>

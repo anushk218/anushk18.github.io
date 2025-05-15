@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Saavi Creations - Login</title>
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: whitesmoke;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  .container {
+    background: black;
+    border-radius: 15px;
+    padding: 30px 25px 35px;
+    width: 350px;
+    max-width: 100%;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  h1 {
+    margin: 0 0 10px;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  p.subtitle {
+    margin: 0 0 25px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-align:center;
+    color: whitesmoke;
+  }
+  .input-type-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .input-type-toggle label {
+    cursor: pointer;
+    padding: 8px 25px;
+    background: #2f2f4f;
+    margin: 0 5px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .input-type-toggle input[type="radio"] {
+    display: none;
+  }
+  .input-type-toggle input[type="radio"]:checked + label {
+    background: #6a11cb;
+    color: whitesmoke;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+  input[type="email"], input[type="text"], input[type="tel"], input[type="number"] {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+  }
+  input[type="email"]:focus, input[type="text"]:focus, input[type="tel"]:focus, input[type="number"]:focus {
+    box-shadow: 0 0 10px #6a11cb;
+  }
+  .phone-input-wrapper {
+    display: flex;
+  }
+  .country-code-select {
+    width: 90px;
+    border-radius: 8px 0 0 8px;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    font-size: 1rem;
+    background: #2f2f4f;
+    color: whitesmoke;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    user-select: none;
+  }
+  .phone-number-input {
+    flex: 1;
+    border-radius: 0 8px 8px 0;
+    border: none;
+    outline: none;
+    padding: 12px 15px;
+    font-size: 1rem;
+  }
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 18px 0 25px;
+    font-size: 0.85rem;
+    color: whitesmoke;
+    user-select: none;
+  }
+  .checkbox-wrapper input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  a.terms-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  button {
+    background: whitesmoke;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 30px;
+    
+    
+  }
+  button:disabled {
+    background: whitesmoke;
+    cursor: not-allowed;
+  }
+  button:hover:not(:disabled) {
+    background: whitesmoke;
+  }
+  @media(max-height: 600px) {
+    body, .container {
+      height: auto;
+    }
+  }
+</style>
+</head>
+<body>
+  <form action="https://formspree.io/f/xpwddnaj" method="POST">
+<div class="container" role="main" aria-label="Login form for Saavi Creations">
+  <h1>Saavi Creations</h1>
+  <p class="subtitle">Get started with Phone or Email</p>
+
+  <div class="input-type-toggle" role="radiogroup" aria-label="Select login method">
+    <input type="radio" id="login-phone" name="login-type" value="phone" checked />
+    <label for="login-phone" tabindex="0" role="radio" aria-checked="true">Phone</label>
+
+    <input type="radio" id="login-email" name="login-type" value="email" />
+    <label for="login-email" tabindex="0" role="radio" aria-checked="false">Email</label>
+  </div>
+
+  <form id="login-form" novalidate>
+    <div id="phone-input-group">
+      <label for="phone-number">Phone Number</label>
+      <div class="phone-input-wrapper">
+        <select id="country-code" class="country-code-select" aria-label="Select country code">
+          <option value="+91" selected>+91 India</option>
+          <option value="+1">+1 USA</option>
+          <option value="+44">+44 UK</option>
+          <option value="+61">+61 Australia</option>
+          <option value="+81">+81 Japan</option>
+          <option value="+49">+49 Germany</option>
+          <option value="+33">+33 France</option>
+          <option value="+55">+55 Brazil</option>
+          <option value="+7">+7 Russia</option>
+          <option value="+27">+27 South Africa</option>
+        </select>
+        <input type="tel" id="phone-number" class="phone-number-input" inputmode="tel" placeholder="Enter phone number" pattern="[0-9]{6,15}" maxlength="15" required aria-required="true" aria-describedby="phone-error" />
+      </div>
+      <div id="phone-error" style="color:#ff6b6b; font-size:0.85rem; margin-top:4px; display:none;">Please enter a valid phone number.</div>
+    </div>
+
+    <div id="email-input-group" style="display:none;">
+      <label for="email-id">Email Address</label>
+      <input type="email" id="email-id" placeholder="Enter your email" required aria-required="true" aria-describedby="email-error" />
+      <div id="email-error" style="color:#ff6b6b; font-size:0.85rem; margin-top:4px; display:none;">Please enter a valid email address.</div>
+    </div>
+
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="terms" aria-required="true" />
+      <label for="terms">I confirm I am 18 years old and agree to the <a href="#" class="terms-link" target="_blank" rel="noopener noreferrer">Terms &amp; Privacy</a></label>
+    </div>
+
+    <button type="submit" id="login-btn" ><a href="C:\Users\anushk gupta\OneDrive\Desktop\index.html"> 
+Login</a></button>
+
+    <p class="success-message" id="success-message" role="alert" style="display:none; text-align:center; font-size:1.2rem; font-weight:600; color:#a5ff90; margin-top:15px;">Logged in successfully!</p>
+  </form>
+</div>
+
+<script>
+  (function(){
+    const loginTypeRadios = document.querySelectorAll('input[name="login-type"]');
+    const phoneGroup = document.getElementById('phone-input-group');
+    const emailGroup = document.getElementById('email-input-group');
+    const phoneInput = document.getElementById('phone-number');
+    const emailInput = document.getElementById('email-id');
+    const countryCodeSelect = document.getElementById('country-code');
+    const termsCheckbox = document.getElementById('terms');
+    const loginBtn = document.getElementById('login-btn');
+    const successMessage = document.getElementById('success-message');
+    const phoneError = document.getElementById('phone-error');
+    const emailError = document.getElementById('email-error');
+
+    let currentLoginType = 'phone';
+
+    function updateInputVisibility() {
+      if (currentLoginType === 'phone') {
+        phoneGroup.style.display = 'block';
+        emailGroup.style.display = 'none';
+        emailError.style.display = 'none';
+        emailInput.value = '';
+      } else {
+        phoneGroup.style.display = 'none';
+        emailGroup.style.display = 'block';
+        phoneError.style.display = 'none';
+        phoneInput.value = '';
+        countryCodeSelect.selectedIndex = 0;
+      }
+      validateLoginBtn();
+      successMessage.style.display = 'none';
+    }
+
+    function isValidPhone(phone) {
+      const phoneOnly = phone.replace(/\D/g, '');
+      return phoneOnly.length >= 6 && phoneOnly.length <= 15;
+    }
+    function isValidEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+
+    function validateLoginBtn() {
+      let validTerms = termsCheckbox.checked;
+      if (!validTerms) {
+        loginBtn.disabled = true;
+        return;
+      }
+      if (currentLoginType === 'phone') {
+        if(isValidPhone(phoneInput.value.trim())) {
+          phoneError.style.display = 'none';
+          loginBtn.disabled = false;
+        } else {
+          loginBtn.disabled = true;
+          if(phoneInput.value.length > 0) {
+            phoneError.style.display = 'block';
+          } else {
+            phoneError.style.display = 'none';
+          }
+        }
+      } else {
+        if(isValidEmail(emailInput.value.trim())) {
+          emailError.style.display = 'none';
+          loginBtn.disabled = false;
+        } else {
+          loginBtn.disabled = true;
+          if(emailInput.value.length > 0) {
+            emailError.style.display = 'block';
+          } else {
+            emailError.style.display = 'none';
+          }
+        }
+      }
+    }
+
+    loginTypeRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        currentLoginType = e.target.value;
+        updateInputVisibility();
+      });
+      radio.nextElementSibling.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          if(!radio.checked){
+            radio.checked = true;
+            currentLoginType = radio.value;
+            updateInputVisibility();
+          }
+        }
+      });
+    });
+
+    phoneInput.addEventListener('input', validateLoginBtn);
+    emailInput.addEventListener('input', validateLoginBtn);
+    countryCodeSelect.addEventListener('change', validateLoginBtn);
+    termsCheckbox.addEventListener('change', validateLoginBtn);
+
+    document.getElementById('login-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      if(loginBtn.disabled) return;
+
+      if(!termsCheckbox.checked){
+        alert('Please confirm that you are 18 years old and agree to the terms and privacy.');
+        return;
+      }
+
+      if(currentLoginType === 'phone'){
+        if(!isValidPhone(phoneInput.value.trim())){
+          phoneError.style.display = 'block';
+          return;
+        }
+      } else {
+        if(!isValidEmail(emailInput.value.trim())){
+          emailError.style.display = 'block';
+          return;
+        }
+      }
+
+      // Simulated login success
+      successMessage.style.display = 'block';
+
+      // Disable form inputs and button after login
+      phoneInput.disabled = true;
+      emailInput.disabled = true;
+      countryCodeSelect.disabled = true;
+      termsCheckbox.disabled = true;
+      loginBtn.disabled = true;
+      loginTypeRadios.forEach(r=>{
+        r.disabled = true;
+        if(r.nextElementSibling) r.nextElementSibling.style.cursor = 'default';
+      });
+    });
+
+    updateInputVisibility();
+  })();
+</script>
+</body>
+</html>
+
